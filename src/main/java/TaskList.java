@@ -39,48 +39,47 @@ public class TaskList {
                 String NEW_FORMAT = "yyyy/MM/dd";
 
                 switch (type) {
-                    case "T":
-                        t = new ToDo(description, isDone);
-                        break;
+                case "T":
+                    t = new ToDo(description, isDone);
+                    break;
 
-                    case "deadline":
-                        array = description.split("(by: ");
+                case "deadline":
+                    array = description.split("(by: ");
 
-                        String oldDateString = array[1];
-                        String newDateString;
+                    String oldDateString = array[1];
+                    String newDateString;
 
-                        SimpleDateFormat sdf = new SimpleDateFormat(OLD_FORMAT);
-                        Date d = null;
-                        try {
-                            d = sdf.parse(oldDateString);
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                        sdf.applyPattern(NEW_FORMAT);
-                        newDateString = sdf.format(d);
-                        t = new Deadline(array[0], isDone, newDateString);
-                        break;
+                    SimpleDateFormat sdf = new SimpleDateFormat(OLD_FORMAT);
+                    Date d = null;
+                    try {
+                        d = sdf.parse(oldDateString);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    sdf.applyPattern(NEW_FORMAT);
+                    newDateString = sdf.format(d);
+                    t = new Deadline(array[0], isDone, newDateString);
+                    break;
 
-                    case "event":
-                        array = description.split("(at: ");
+                case "event":
+                    array = description.split("(at: ");
+                    String oldDateStr = array[1];
+                    String newDateStr;
 
-                        String oldDateStr = array[1];
-                        String newDateStr;
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(OLD_FORMAT);
+                    Date date = null;
+                    try {
+                        date = simpleDateFormat.parse(oldDateStr);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    simpleDateFormat.applyPattern(NEW_FORMAT);
+                    newDateStr = simpleDateFormat.format(date);
+                    t = new Deadline(array[0], isDone, newDateStr);
+                    break;
 
-                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(OLD_FORMAT);
-                        Date date = null;
-                        try {
-                            date = simpleDateFormat.parse(oldDateStr);
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                        simpleDateFormat.applyPattern(NEW_FORMAT);
-                        newDateStr = simpleDateFormat.format(date);
-                        t = new Deadline(array[0], isDone, newDateStr);
-                        break;
-
-                    default:
-                        break;
+                default:
+                    break;
                 }
                 list.add(t);
                 noOfTasks++;

@@ -126,7 +126,5 @@ public class Ui {
         Exception ex = new InvalidInputException("I see...But what time is this event at?");
         System.err.println(LINE + ex.getMessage() + "\n" + LINE);
     }
-
-
 }
 

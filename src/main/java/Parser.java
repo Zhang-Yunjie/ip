@@ -92,7 +92,6 @@ public class Parser {
                     ui.addSuccessful(t, taskList);
                     Storage.updateTasks(taskList.getNoOfTasks(), taskList.list, filePath);
                 }
-
             }
         }
     }
